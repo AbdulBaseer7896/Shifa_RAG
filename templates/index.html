@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Query System - Shifa International Hospital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .response-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+        .response-container h3 {
+            margin-top: 0;
+        }
+        .response-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+        .response-container li {
+            margin-bottom: 10px;
+        }
+        .response-container p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .response-container strong {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Doctor Query System - Shifa International Hospital</h1>
+
+    <form action="/ask" method="POST">
+        <div class="input-container">
+            <label for="query">Ask about any doctor or specialty (e.g., Orthopedic):</label>
+            <input type="text" id="query" name="query" required placeholder="Enter your query here">
+        </div>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if error %}
+    <div class="error">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <div class="response-container">
+        <h3>Answer:</h3>
+        <div>
+            {{ response | safe }}
+        </div>
+    </div>
+    
+</div>
+
+</body>
+</html>
